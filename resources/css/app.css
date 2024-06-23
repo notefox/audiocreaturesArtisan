@@ -1,0 +1,48 @@
+/* import of aos styling */
+@import 'aos/dist/aos.css';
+
+/* import of tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-space {
+    background: radial-gradient(59.77% 39.38% at 19.02% 54.82%,rgba(236,131,131,.144) 0%,rgba(0,0,0,0) 100%) ,radial-gradient(76.79% 49.88% at 64.61% 7.51%,rgba(255,255,255,.2) 0%,rgba(0,0,0,0) 100%) ,#170b24;
+}
+
+body {
+    padding-top: 50px;
+}
+
+@font-face {
+    font-family: 'Figtree', sans-serif;
+    font-style: normal;
+    src: url("../fonts/Figtree-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: 'Figtree', sans-serif;
+    src: url("../fonts/Figtree-Italic-VariableFont_wght.ttf");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gibson';
+    font-weight: 700;
+    font-style: italic;
+    src: url("../fonts/Gibson-BoldItalic.otf");
+}
+
+@layer components {
+    .content-container {
+        @apply container mx-auto bg-repeat-y bg-space min-h-screen relative
+    }
+
+    .nav-heading-text {
+        @apply font-sans font-medium text-white uppercase
+    }
+
+    .section-heading-text {
+        @apply text-white font-[1000] text-5xl uppercase font-serif
+    }
+}
