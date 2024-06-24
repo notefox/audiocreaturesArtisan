@@ -10,8 +10,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <body class="content-container">
+        <div class="bg-dark">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
