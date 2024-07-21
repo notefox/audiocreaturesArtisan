@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Livewire;
+    namespace App\Livewire;
 
-use App\Livewire\Forms\PublisherForm;
-use Livewire\WithFileUploads;
-use LivewireUI\Modal\ModalComponent;
+    use App\Livewire\Forms\PublisherForm;
+    use Livewire\WithFileUploads;
+    use LivewireUI\Modal\ModalComponent;
 
-class CreatePublisher extends ModalComponent {
+    class CreatePublisher extends ModalComponent {
 
-    use WithFileUploads;
+        use WithFileUploads;
 
-    public PublisherForm $form;
+        public PublisherForm $form;
 
-    public function save() {
-        $this->form->store();
+        public function save() {
+            $this->form->store();
 
-        $this->closeModal();
+            $this->redirect('dashboard');
+        }
+
+        /** @noinspection PhpMissingReturnTypeInspection */
+        public function render() {
+            return view('livewire.form-publisher');
+        }
     }
-
-    /** @noinspection PhpMissingReturnTypeInspection */
-    public function render()
-    {
-        return view('livewire.form-publisher');
-    }
-}
