@@ -1,7 +1,5 @@
-import './bootstrap';
+import './bootstrap'
 
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-
-Alpine.start();
+// functionality js files (DEPENDENT ON utils.js in bootstrap)
+import './functionalities/aos-init.js'
+import './functionalities/nav-bar-overlap-handler.js'

@@ -7,42 +7,100 @@
 @tailwind utilities;
 
 .bg-space {
-    background: radial-gradient(59.77% 39.38% at 19.02% 54.82%,rgba(236,131,131,.144) 0%,rgba(0,0,0,0) 100%) ,radial-gradient(76.79% 49.88% at 64.61% 7.51%,rgba(255,255,255,.2) 0%,rgba(0,0,0,0) 100%) ,#170b24;
+    background: radial-gradient(59.77% 39.38% at 19.02% 54.82%, rgba(236, 131, 131, .144) 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(76.79% 49.88% at 64.61% 7.51%, rgba(255, 255, 255, .2) 0%, rgba(0, 0, 0, 0) 100%), #170b24;
 }
 
-body {
-    padding-top: 50px;
-}
+@layer base {
+    @font-face {
+        font-family: 'Figtree', sans-serif;
+        font-display: swap;
+        font-style: normal;
+        src: url("../fonts/Figtree-VariableFont_wght.ttf");
+    }
 
-@font-face {
-    font-family: 'Figtree', sans-serif;
-    font-style: normal;
-    src: url("../fonts/Figtree-VariableFont_wght.ttf");
-}
+    @font-face {
+        font-family: 'Figtree', sans-serif;
+        font-display: swap;
+        src: url("../fonts/Figtree-Italic-VariableFont_wght.ttf");
+        font-style: italic;
+    }
 
-@font-face {
-    font-family: 'Figtree', sans-serif;
-    src: url("../fonts/Figtree-Italic-VariableFont_wght.ttf");
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Gibson';
-    font-weight: 700;
-    font-style: italic;
-    src: url("../fonts/Gibson-BoldItalic.otf");
+    @font-face {
+        font-family: 'Gibson';
+        font-display: swap;
+        font-weight: 700;
+        font-style: italic;
+        src: url("../fonts/Gibson-BoldItalic.otf");
+    }
 }
 
 @layer components {
+    /* general components */
     .content-container {
-        @apply container mx-auto bg-repeat-y bg-space min-h-screen relative
+        @apply container min-h-screen
+    }
+
+    .text-input {
+        @apply font-sans h-10 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm
+    }
+
+    .input-label {
+        @apply block font-medium text-sm
+    }
+
+    .primary-button {
+         @apply inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-sans text-sm text-white uppercase tracking-widest hover:bg-gray-600 focus:bg-gray-700 active:bg-gray-500 focus:outline-none focus:ring-2 transition ease-in-out duration-150
+    }
+
+    /* navigation components */
+    .nav-container {
+        @apply container absolute z-10 w-full flex justify-between p-2 nav-heading-text bg-gray-900 rounded-full top-5
     }
 
     .nav-heading-text {
-        @apply font-sans font-medium text-white uppercase
+        @apply font-sans text-xl text-white uppercase
     }
 
+    .nav-item {
+        @apply hidden lg:flex items-center w-32 px-1 my-1 border-b-2 transition duration-150 ease-in-out justify-center
+    }
+
+    .nav-item-active {
+        @apply border-indigo-400 focus:outline-none focus:border-indigo-700
+    }
+
+    .nav-item-inactive {
+        @apply border-transparent focus:outline-none
+    }
+
+    /* page components */
     .section-heading-text {
         @apply text-white font-[1000] text-5xl uppercase font-serif
+    }
+
+    /* dashboard components */
+    .dashboard-outer-container {
+        @apply h-full pt-5 bg-white font-sans overflow-hidden
+    }
+
+    .dashboard-inner-container {
+        @apply h-full grid grid-cols-dashboard
+    }
+
+    .dashboard-heading {
+        @apply px-5 pb-3 border-b-2 border-black text-3xl text-left font-serif
+    }
+
+    .dashboard-sidebar-container {
+        @apply h-full min-w-56 flex flex-col border-r-2 border-black font-sans text-xl
+    }
+
+    .dashboard-sidebar-link {
+        @apply border-b-2 flex items-center py-3 px-5
+    }
+
+    .dashboard-content-container {
+        @apply mt-4
+
     }
 }

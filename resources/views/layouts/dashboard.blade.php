@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ current_page_path_name() }}</title>
+    <title>{{ __('Dashboard') }}</title>
 
     <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/css/page.css'])
+    @vite(['resources/css/app.css', 'resources/css/dashboard.css'])
 </head>
-<body class="w-full bg-repeat-y relative bg-space">
-<div id="content-container" class="content-container mx-auto">
-    <!-- Page Content -->
-    {{ $slot }}
-</div>
+<body class="h-screen bg-repeat-y relative bg-space">
+    <div class="h-full font-serif">
+        <!-- Page Content -->
+        {{ $slot }}
+    </div>
 </body>
 <footer>
     <!-- Scripts -->
-    @vite('resources/js/app.js')
+    @vite('resources/js/dashboard.js')
     @livewireScripts
+    @livewire('wire-elements-modal')
 </footer>
 </html>

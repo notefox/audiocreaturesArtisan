@@ -10,6 +10,8 @@ class Publisher extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'country', 'link', 'logo'];
+
     public function projects(): HasMany {
         return $this->hasMany('App\Project');
     }
