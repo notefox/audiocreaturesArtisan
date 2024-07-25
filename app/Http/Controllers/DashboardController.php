@@ -11,7 +11,7 @@
     use Illuminate\Support\Facades\Request;
 
     class DashboardController extends Controller {
-        public function create() {
+        public function render() {
             $current_user = Request::user();
 
             $datatypes = [
