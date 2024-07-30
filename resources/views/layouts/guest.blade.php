@@ -10,7 +10,7 @@
     <!-- Styles -->
     @vite(['resources/css/app.css'])
 </head>
-<body class="container min-h-screen mx-auto">
+<body class="container min-h-screen mx-auto flex items-center">
     {{ $slot }}
 </body>
 <footer>
