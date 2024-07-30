@@ -17,6 +17,6 @@
         }
 
         public function render(): View {
-            return view('livewire.list-datatype-entries');
+            return view('livewire.list-datatype-entries',  ['id' => $this->datatype]);
         }
 	}

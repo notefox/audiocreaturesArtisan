@@ -12,6 +12,8 @@ class Publisher extends Model
 
     protected $fillable = ['name', 'country', 'link', 'logo'];
 
+    public $timestamps = false;
+
     public function projects(): HasMany {
         return $this->hasMany('App\Project');
     }

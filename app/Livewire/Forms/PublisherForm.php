@@ -22,6 +22,7 @@ class PublisherForm extends Form
     public $logo = '';
 
     public $created_at = null;
+    public $updated_at = null;
 
     public function load(Publisher $publisher): void {
         $this->publisher = $publisher;
@@ -32,19 +33,26 @@ class PublisherForm extends Form
         $this->logo = $publisher->logo;
     }
 
-    public function update() {
+    public function update(): void {
         $this->validate();
 
-        $this->publisher->update($this->all());
+        $this->updated_at = Carbon::now();
+
+        $this->publisher->update($this->getAttributes());
     }
 
     public function store(): void {
         $this->validate();
 
-        $this->created_at = Carbon::now();
+       $this->created_at = Carbon::now();
+       $this->updated_at = Carbon::now();
 
-        Publisher::create($this->only(['name', 'country', 'link', 'logo', 'created_at']));
+        Publisher::create($this->getAttributes());
 
         $this->reset();
+    }
+
+    private function getAttributes(): array {
+        return $this->only(['name', 'country', 'link', 'logo', 'created_at', 'updated_at']);
     }
 }
