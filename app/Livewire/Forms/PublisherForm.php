@@ -18,7 +18,7 @@ class PublisherForm extends Form
     public $country = '';
     #[Validate('required|url')]
     public $link = '';
-    #[Validate('required|file')]
+    #[Validate('required|file|max:102400')]
     public $logo = '';
 
     public $created_at = null;
