@@ -1,4 +1,4 @@
-<div class="datalistEntry flex flex-col items-end px-5 gap-3" data-datatype-container="{{ $datatype }}" id="{{ $datatype }}">
+<div class="datalistEntry hidden flex flex-col items-end px-5 gap-3" data-datatype-container="{{ $datatype }}" id="{{ $datatype }}">
     <div class="flex w-full justify-between">
         <x-primary-button wire:click="$dispatch('openModal', {component: 'create-{{$datatype}}'} )" >
             {{ __('New') }} {{ generateLabel($datatype) }}
