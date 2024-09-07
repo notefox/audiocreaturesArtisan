@@ -1,12 +1,11 @@
 <?php
 
-	namespace App\Service;
+    namespace App\Service;
 
-	class TabStateService {
+    class TabStateService {
 
         private array $currentTabs;
         private int $connectedCookie;
 
 
-
-	}
+    }

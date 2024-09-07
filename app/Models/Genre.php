@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Models;
+    namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Genre extends Model
-{
-    use HasFactory;
+    class Genre extends Model {
+        use HasFactory;
 
-    public function project_genre_connections(): HasMany {
-       return $this->hasMany('App\ProjectGenreConnection');
+        public function project_genre_connections(): HasMany {
+            return $this->hasMany('App\ProjectGenreConnection');
+        }
     }
-}

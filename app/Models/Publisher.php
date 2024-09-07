@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Models;
+    namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Publisher extends Model
-{
-    use HasFactory;
+    class Publisher extends Model {
+        use HasFactory;
 
-    protected $fillable = ['name', 'country', 'link', 'logo'];
+        protected $fillable = ['name', 'country', 'link', 'logo'];
 
-    public $timestamps = false;
+        public $timestamps = false;
 
-    public function projects(): HasMany {
-        return $this->hasMany('App\Project');
+        public function projects(): HasMany {
+            return $this->hasMany('App\Project');
+        }
     }
-}

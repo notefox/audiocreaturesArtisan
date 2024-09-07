@@ -2,10 +2,21 @@
 
     use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\ProfileController;
+    use App\Models\Publisher;
     use Illuminate\Support\Facades\Route;
 
 
-    Route::get('/', fn() => view('pages.index'))->name('home');
+    Route::get('/', function() {
+        $publishers = Publisher::all();
+
+        $data = [
+            'publishers' => $publishers,
+        ];
+
+        return view('pages.index', $data);
+    })->name('home');
+
+
     Route::get('/about', fn() => view('pages.about'))->name('about');
     Route::get('/news', fn() => view('pages.news'))->name('news');
     Route::get('/portfolio', fn() => view('pages.portfolio'))->name('portfolio');

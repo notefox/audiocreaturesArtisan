@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Models;
+    namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
+    use Illuminate\Database\Eloquent\Model;
 
-class Platform extends Model
-{
-    use HasFactory;
+    class Platform extends Model {
+        use HasFactory;
 
-    public function project_platform_connections() {
-        return $this->hasMany('App\ProjectPlatformConnection');
+        public function project_platform_connections() {
+            return $this->hasMany('App\ProjectPlatformConnection');
+        }
+
     }
-
-}

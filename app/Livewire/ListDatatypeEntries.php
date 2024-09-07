@@ -1,6 +1,6 @@
 <?php
 
-	namespace App\Livewire;
+    namespace App\Livewire;
 
     use Illuminate\Database\Eloquent\Collection;
     use Illuminate\View\View;
@@ -17,6 +17,6 @@
         }
 
         public function render(): View {
-            return view('livewire.list-datatype-entries',  ['id' => $this->datatype]);
+            return view('livewire.list-datatype-entries', ['id' => $this->datatype]);
         }
-	}
+    }
