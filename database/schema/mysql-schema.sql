@@ -57,6 +57,8 @@ CREATE TABLE `images` (
   `image_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sha256` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mime_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -293,3 +295,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (24,'2024_06_09_225
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (25,'2024_07_14_110658_create_tabs_table',12);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (26,'2024_09_15_100157_change_image_table_entries_to_image_table',13);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (27,'2024_09_15_123319_add_image_type_column_to_images_table',14);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (28,'2024_09_15_124117_add_timestamp_to_image',15);
