@@ -48,6 +48,17 @@ CREATE TABLE `genres` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `images` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `image_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sha256` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `job_batches`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -165,9 +176,12 @@ CREATE TABLE `projects` (
   `publisher_id` bigint unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `heading_img_id` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`publisher_id`),
-  CONSTRAINT `id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`) ON UPDATE CASCADE
+  KEY `projects_heading_img_id_foreign` (`heading_img_id`),
+  CONSTRAINT `id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `projects_heading_img_id_foreign` FOREIGN KEY (`heading_img_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `publishers`;
@@ -178,8 +192,12 @@ CREATE TABLE `publishers` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `logo_id` bigint unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `publishers_logo_id_foreign` (`logo_id`),
+  CONSTRAINT `publishers_logo_id_foreign` FOREIGN KEY (`logo_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `reference_link_types`;
@@ -218,6 +236,23 @@ CREATE TABLE `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `tabs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tabs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned NOT NULL,
+  `page` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `filter` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `next` int DEFAULT NULL,
+  `prev` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tabs_user_id_foreign` (`user_id`),
+  CONSTRAINT `tabs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -254,3 +289,5 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (21,'2024_06_09_221
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (22,'2024_06_09_221552_create_project_link_reference_connections_table',9);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (23,'2024_06_09_225136_create_project_genre_connections_table',10);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (24,'2024_06_09_225217_create_project_platform_connections_table',11);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (25,'2024_07_14_110658_create_tabs_table',12);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (26,'2024_09_15_100157_change_image_table_entries_to_image_table',13);
