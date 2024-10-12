@@ -4,16 +4,17 @@
 
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
-    use Illuminate\Database\Eloquent\Relations\HasMany;
+    use Illuminate\Database\Eloquent\SoftDeletes;
 
     class Publisher extends Model {
         use HasFactory;
+        use SoftDeletes;
 
-        protected $fillable = ['name', 'country', 'link', 'logo'];
+        protected $fillable = ['name', 'country', 'link'];
 
         public $timestamps = false;
 
-        public function projects(): HasMany {
-            return $this->hasMany('App\Project');
+        public function get_logo(): Images|null {
+            return Images::query()->find($this->logo_id)?->first();
         }
     }

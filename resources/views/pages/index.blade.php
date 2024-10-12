@@ -5,8 +5,9 @@
         Index Page
     </div>
 
-    @foreach($publishers as $publisher)
-        <img src="{{ URL::asset($publisher->logo) }}">
-    @endforeach
-
+    <pre class="text-white">
+        @foreach($images as $image)
+            <img src="{{ $image->alt()->absolute_path() }}" alt="{{ $image->alt()->absolute_path() }}">
+        @endforeach
+    </pre>
 </x-app-layout>

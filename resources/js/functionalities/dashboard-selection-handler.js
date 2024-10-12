@@ -26,9 +26,11 @@ const dashboardSelectionHandler = () => {
             .forEach(element => element.classList.remove('hidden'))
     }
 
-    showTab('project')
+    const currentTab = window.location.hash.replace('#', '');
 
-    addEventListener("hashchange", (event) => {
+    showTab(currentTab ?? 'projects')
+
+    addEventListener("hashchange", () => {
         showTab(window.location.hash.replace('#', ''))
     });
 }

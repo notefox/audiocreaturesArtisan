@@ -19,7 +19,8 @@
         public function save(): null {
             $this->form->update();
 
-            return $this->redirect('dashboard#publisher');
+            $this->redirect('dashboard#publisher');
+            return null;
         }
 
         public function render(): Application|Factory|View|\Illuminate\View\View {

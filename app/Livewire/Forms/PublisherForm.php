@@ -3,8 +3,10 @@
     namespace App\Livewire\Forms;
 
     use App\Models\Publisher;
+    use App\Repositories\ImageRepository;
     use Illuminate\Support\Carbon;
     use Livewire\Attributes\Validate;
+    use Livewire\Component;
     use Livewire\Form;
 
     class PublisherForm extends Form {
@@ -20,6 +22,7 @@
         #[Validate('required|file|max:102400')]
         public $logo = '';
 
+        public $logo_id = null;
         public $created_at = null;
         public $updated_at = null;
 
@@ -37,6 +40,8 @@
 
             $this->updated_at = Carbon::now();
 
+            $this->update_image();
+
             $this->publisher->update($this->getAttributes());
         }
 
@@ -46,12 +51,20 @@
             $this->created_at = Carbon::now();
             $this->updated_at = Carbon::now();
 
-            Publisher::create($this->getAttributes());
+            $saved_image = ImageRepository::uploadImage($this->getPropertyValue('logo'));
+
+            $this->logo_id = $saved_image->id;
+
+            $this->publisher = Publisher::factory()->create($this->getAttributes());
 
             $this->reset();
         }
 
         private function getAttributes(): array {
-            return $this->only(['name', 'country', 'link', 'logo', 'created_at', 'updated_at']);
+            return $this->only(['name', 'country', 'link', 'logo_id']);
+        }
+
+        private function update_image() {
+            //TODO: implement
         }
     }

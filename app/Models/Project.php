@@ -6,9 +6,11 @@
     use Illuminate\Database\Eloquent\Model;
     use Illuminate\Database\Eloquent\Relations\HasMany;
     use Illuminate\Database\Eloquent\Relations\HasOne;
+    use Illuminate\Database\Eloquent\SoftDeletes;
 
     class Project extends Model {
         use HasFactory;
+        use SoftDeletes;
 
         public function publisher(): HasOne {
             return $this->hasOne('App\Publisher');

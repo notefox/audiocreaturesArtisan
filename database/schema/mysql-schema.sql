@@ -45,6 +45,7 @@ DROP TABLE IF EXISTS `genres`;
 CREATE TABLE `genres` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -59,6 +60,7 @@ CREATE TABLE `images` (
   `mime_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `parent` bigint NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -120,6 +122,7 @@ DROP TABLE IF EXISTS `platforms`;
 CREATE TABLE `platforms` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -165,6 +168,7 @@ DROP TABLE IF EXISTS `project_types`;
 CREATE TABLE `project_types` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -180,6 +184,7 @@ CREATE TABLE `projects` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `heading_img_id` bigint unsigned DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`publisher_id`),
   KEY `projects_heading_img_id_foreign` (`heading_img_id`),
@@ -198,6 +203,7 @@ CREATE TABLE `publishers` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `logo_id` bigint unsigned DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `publishers_logo_id_foreign` (`logo_id`),
   CONSTRAINT `publishers_logo_id_foreign` FOREIGN KEY (`logo_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
@@ -219,6 +225,7 @@ CREATE TABLE `reference_links` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `string` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `reference_link_type_id` bigint unsigned NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `reference_links_reference_link_type_id_foreign` (`reference_link_type_id`),
   CONSTRAINT `reference_links_reference_link_type_id_foreign` FOREIGN KEY (`reference_link_type_id`) REFERENCES `reference_link_types` (`id`) ON UPDATE CASCADE
@@ -296,3 +303,5 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (25,'2024_07_14_110
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (26,'2024_09_15_100157_change_image_table_entries_to_image_table',13);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (27,'2024_09_15_123319_add_image_type_column_to_images_table',14);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (28,'2024_09_15_124117_add_timestamp_to_image',15);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (29,'2024_09_15_175120_add_soft_delete_t_o_tables',16);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (30,'2024_09_15_190012_add_parent_id_to_image_table',17);

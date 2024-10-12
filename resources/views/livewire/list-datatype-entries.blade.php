@@ -1,6 +1,7 @@
-<div class="datalistEntry flex flex-col items-end px-5 gap-3" data-datatype-container="{{ $datatype }}" id="{{ $datatype }}">
+<div class="datalistEntry flex flex-col items-end px-5 gap-3" data-datatype-container="{{ $datatype }}"
+     id="{{ $datatype }}">
     <div class="flex w-full justify-between">
-        <x-primary-button wire:click="$dispatch('openModal', {component: 'create-{{$datatype}}'} )" >
+        <x-primary-button wire:click="$dispatch('openModal', {component: 'create-{{$datatype}}'} )">
             {{ __('New') }} {{ generateLabel($datatype) }}
         </x-primary-button>
 
@@ -8,9 +9,23 @@
                       placeholder="{{ __('Search') }} {{ generateLabel($datatype) }}"/>
     </div>
 
-    <ul class="w-full">
+    <div class="w-full border-2">
+        <div class="grid grid-cols-[1fr,4fr,1fr] border-b-2">
+            <span>ID</span>
+            <span>Name</span>
+        </div>
         @foreach($entries as $entry)
-            <li>{{ $entry }}</li>
+            <div class="grid grid-cols-[1fr,4fr,1fr] gap-3 border-b-2">
+                <span> {{ $entry->id }} </span>
+                <span> {{ $entry->name }} </span>
+                <form action="{{ route($datatype . '.destroy', ['id' => $entry->id]) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <x-danger-button onClick="return confirm('Are you sure?')" type="delete" name="Delete">
+                        Delete
+                    </x-danger-button>
+                </form>
+            </div>
         @endforeach
-    </ul>
+    </div>
 </div>

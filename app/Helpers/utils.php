@@ -41,3 +41,18 @@
     function generateLabel(string $string): string {
         return ucwords(str_replace('_', ' ', $string));
     }
+
+    /**
+     * calculates sha256 checksum for image at a given path
+     *
+     * @param string $path path to image
+     *
+     * @return string
+     */
+    function calculate_sha256_of_file(string $path = ""): string {
+        if(!file_exists($path) || is_dir($path)) {
+            return '';
+        }
+
+        return hash_file('sha256', $path);
+    }

@@ -3,6 +3,7 @@
     namespace App\Livewire;
 
     use App\Livewire\Forms\PublisherForm;
+    use Illuminate\Support\Facades\Redirect;
     use Livewire\WithFileUploads;
     use LivewireUI\Modal\ModalComponent;
 
@@ -12,10 +13,11 @@
 
         public PublisherForm $form;
 
-        public function save() {
+        public function save(): null {
             $this->form->store();
 
             $this->redirect('dashboard');
+            return null;
         }
 
         /** @noinspection PhpMissingReturnTypeInspection */
