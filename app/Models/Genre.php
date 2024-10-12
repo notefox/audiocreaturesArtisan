@@ -13,6 +13,10 @@
 
         public $timestamps = false;
 
+        public function getById( $id ): Genre {
+            return Genre::firstWhere('id', '=', $id);
+        }
+
         public function project_genre_connections(): HasMany {
             return $this->hasMany('App\ProjectGenreConnection');
         }

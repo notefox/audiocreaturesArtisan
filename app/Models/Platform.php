@@ -12,6 +12,10 @@
 
         public $timestamps = false;
 
+        public function getById( $id ): Platform {
+            return Platform::firstWhere('id', '=', $id);
+        }
+
         public function project_platform_connections() {
             return $this->hasMany('App\ProjectPlatformConnection');
         }

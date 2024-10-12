@@ -13,6 +13,10 @@
 
         public $timestamps = false;
 
+        public function getById( $id ): ProjectType {
+            return ProjectType::firstWhere('id', '=', $id);
+        }
+
         public function project_type_connections(): HasMany {
             return $this->hasMany('App\ProjectTypeConnection');
         }
