@@ -18,7 +18,7 @@
             <div class="grid grid-cols-[1fr,4fr,1fr] gap-3 border-b-2">
                 <span> {{ $entry->id }} </span>
                 <span> {{ $entry->name }} </span>
-                <form action="{{ route($datatype . '.destroy', ['id' => $entry->id]) }}" method="post">
+                <form action="{{ route(str_replace('_', '-', $datatype) . '.destroy', ['id' => $entry->id]) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <x-danger-button onClick="return confirm('Are you sure?')" type="delete" name="Delete">

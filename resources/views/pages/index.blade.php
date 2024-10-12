@@ -5,9 +5,9 @@
         Index Page
     </div>
 
-    <pre class="text-white">
+    <div class="text-white">
         @foreach($images as $image)
-            <img src="{{ $image->alt()->absolute_path() }}" alt="{{ $image->alt()->absolute_path() }}">
+            <img src="{{ $image->alt('large')->absolute_path() }}" alt="{{ $image->alt()->absolute_path() }}">
         @endforeach
-    </pre>
+    </div>
 </x-app-layout>

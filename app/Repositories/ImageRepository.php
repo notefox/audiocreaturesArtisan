@@ -61,7 +61,7 @@
             $image->toWebp()->save( $absolute_path );
 
             // calculate relative path
-            $relative_path = str_replace( storage_path( 'app/' ), '', $absolute_path );
+            $relative_path = str_replace( storage_path( 'app/public' ), '', $absolute_path );
 
             self::addImageEntry( $absolute_path, $downscaled_image_name, $relative_path, $parent_image->id );
         }
