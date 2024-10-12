@@ -10,6 +10,8 @@
         use HasFactory;
         use SoftDeletes;
 
+        public $timestamps = false;
+
         public function project_platform_connections() {
             return $this->hasMany('App\ProjectPlatformConnection');
         }

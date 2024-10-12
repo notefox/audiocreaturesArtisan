@@ -11,6 +11,8 @@
         use HasFactory;
         use SoftDeletes;
 
+        public $timestamps = false;
+
         public function project_genre_connections(): HasMany {
             return $this->hasMany('App\ProjectGenreConnection');
         }

@@ -6,8 +6,5 @@
     </div>
 
     <div class="text-white">
-        @foreach($images as $image)
-            <img src="{{ $image->alt('large')->absolute_path() }}" alt="{{ $image->alt()->absolute_path() }}">
-        @endforeach
     </div>
 </x-app-layout>

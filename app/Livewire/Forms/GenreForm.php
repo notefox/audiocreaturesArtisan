@@ -2,18 +2,18 @@
 
 	namespace App\Livewire\Forms;
 
-	use App\Models\ProjectType;
+	use App\Models\Genre;
     use Livewire\Attributes\Validate;
     use Livewire\Form;
 
-    class ProjectTypeForm extends Form {
+    class GenreForm extends Form {
 
-        public ?ProjectType $project_type;
+        public ?Genre $genre;
 
         #[Validate('required|min:3')]
         public string $name = '';
 
-        public function load(ProjectType $project_type): void {
+        public function load(Genre $project_type): void {
             $this->name = $project_type->name;
         }
 
@@ -28,7 +28,7 @@
 
             $this->name = $this->getPropertyValue('name');
 
-            $this->project_type = ProjectType::factory()->create($this->getAttributes());
+            $this->genre = Genre::factory()->create($this->getAttributes());
 
             $this->reset();
         }
@@ -36,4 +36,5 @@
         private function getAttributes(): array {
             return $this->only(['name']);
         }
+
 	}

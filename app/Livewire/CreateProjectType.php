@@ -11,7 +11,7 @@
         public function save(): null {
             $this->form->store();
 
-            $this->redirect('dashboard');
+            $this->closeModal();
             return null;
         }
 
