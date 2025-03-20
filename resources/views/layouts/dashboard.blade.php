@@ -8,7 +8,7 @@
     <title>{{ __('Dashboard') }}</title>
 
     <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/css/dashboard.css'])
+    @vite(['resources/css/app.css'])
 </head>
 <body class="h-screen bg-repeat-y relative bg-space">
     <div class="h-full font-serif">

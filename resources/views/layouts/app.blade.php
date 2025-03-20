@@ -8,7 +8,7 @@
     <title>{{ current_page_path_name() }}</title>
 
     <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/css/page.css'])
+    @vite(['resources/css/app.css'])
 </head>
 <body class="w-full bg-repeat-y relative bg-space">
 <div id="content-container" class="content-container mx-auto">
