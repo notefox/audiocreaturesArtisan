@@ -5,7 +5,7 @@
  * @param wrapper { HTMLElement }
  * @return { Node } the original element, now in a wrapper
  */
-function moveElementIntoWrapper(element, wrapper) {
+export function moveElementIntoWrapper(element, wrapper) {
     let clonedElement = element.cloneNode(true)
     wrapper.appendChild(clonedElement)
     element.remove()
@@ -22,7 +22,7 @@ function moveElementIntoWrapper(element, wrapper) {
  *
  * @return {*}
  */
-function childDive(element, depth = 0, currentDepth = 0) {
+export function childDive(element, depth = 0, currentDepth = 0) {
     return depth <= currentDepth
         ? element
         : childDive(element.children[0]
@@ -35,7 +35,7 @@ function childDive(element, depth = 0, currentDepth = 0) {
  * @param variable
  * @return { boolean }
  */
-function isDefined(variable) {
+export function isDefined(variable) {
     return typeof variable !== 'undefined';
 }
 
@@ -46,7 +46,7 @@ function isDefined(variable) {
  * @param className { string }
  * @return { HTMLElement | Node }
  */
-function getNextOuterClass(current, className) {
+export function getNextOuterClass(current, className) {
     const currentContainsClass = current.classList.contains(className)
 
     return currentContainsClass
@@ -61,7 +61,7 @@ function getNextOuterClass(current, className) {
  * @param className { string }
  * @return {HTMLElement | Node}
  */
-function getNextInnerClass(current, className) {
+export function getNextInnerClass(current, className) {
     const currentContainsClass = current.classList.contains(className)
 
     if(currentContainsClass) {
@@ -82,7 +82,7 @@ function getNextInnerClass(current, className) {
  * @param className { string }
  * @return { HTMLElement | Node }
  */
-function getNearestClass(current, className) {
+export function getNearestClass(current, className) {
     const currentContainsClass = current.classList.contains(className)
 
     if(currentContainsClass) {
@@ -106,7 +106,7 @@ function getNearestClass(current, className) {
  * @param elementBase
  * @return {*}
  */
-function elementContainsImg(elementBase) {
+export function elementContainsImg(elementBase) {
     return elementBase.getElementsByTagName("img")
 }
 
@@ -116,7 +116,7 @@ function elementContainsImg(elementBase) {
  * @param elementBase { HTMLElement | Node }
  * @return { HTMLElement | Node }
  */
-function findNextOuterImage(elementBase) {
+export function findNextOuterImage(elementBase) {
     const children = elementBase.children
 
     for (const child of children) {
@@ -140,7 +140,7 @@ function findNextOuterImage(elementBase) {
  * @param chunkSize { number }
  * @return {*[][]}
  */
-function chunkCollection(collection, chunkSize) {
+export function chunkCollection(collection, chunkSize) {
     const chunks = [[]]
 
     for (let i = 0; i < collection.length; i++) {
@@ -193,9 +193,41 @@ Array.prototype.filterNot = function (callback) {
 /**
  * appends an element before this (acts on parent HTML document structure)
  *
- * @param element {HTMLElement | Node}
+ * @param element { HTMLElement | Node}
  * @param parentNode { HTMLElement | Node }
  */
 Element.prototype.appendBefore = function (element, parentNode = null) {
     element.parentNode.insertBefore(this, element);
 };
+
+export function sleep(ms, resolve) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+/**
+ * Checks if the given variable is empty
+ *
+ * @param variable
+ * @return {boolean}
+ */
+export function isEmpty(variable) {
+    if (variable === null || variable === undefined) {
+        return true;
+    }
+
+    if (typeof variable === 'string' && variable.trim() === '') {
+        return true;
+    }
+
+    if (Array.isArray(variable) && variable.length === 0) {
+        return true;
+    }
+
+    // noinspection RedundantIfStatementJS
+    if (typeof variable === 'object' && Object.keys(variable).length === 0) {
+        return true;
+    }
+
+    return false;
+}

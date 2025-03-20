@@ -9,7 +9,7 @@
         use HasFactory;
 
         public static function getByProject( int $id ) {
-            return ProjectTypeConnection::all()->where( 'project_id', '=', $id )->get( [ 'project_type_id' ] )->map( fn( $id ) => ProjectType::getById( $id ) );
+            return ProjectTypeConnection::all()->where( 'project_id', '=', $id )->get( [ 'project_type_id' ] )->map( fn( $id ) => ProjectType::get( $id ) );
         }
 
         public function project_types() {

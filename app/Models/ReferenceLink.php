@@ -11,7 +11,7 @@
         use HasFactory;
         use SoftDeletes;
 
-        public function getById( $id ): ReferenceLink {
+        public static function get( $id ): ReferenceLink {
             return ReferenceLink::firstWhere('id', '=', $id);
         }
 

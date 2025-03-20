@@ -1,5 +1,5 @@
 @props(['link', 'label'])
 
-<a href="#{{ $link }}" class="dashboard-sidebar-link" wire:click="changeToDatatypeList">
+<a class="dashboard-sidebar-link" data-tab="{{$link}}" href="">
     <span>{{ $label }}</span>
 </a>

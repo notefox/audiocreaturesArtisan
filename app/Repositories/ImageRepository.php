@@ -26,6 +26,11 @@
             return Images::all()->firstWhere( 'image_name', '=', $name);
         }
 
+
+        public static function get( int $id ): ?Images {
+            return Images::find( $id );
+        }
+
         public static function uploadImage( $image, $name = "", $with_alt = true ): Images {
             $uploaded = self::upload( $image, $name );
 

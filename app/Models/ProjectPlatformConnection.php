@@ -11,7 +11,7 @@
         use HasFactory;
 
 	    public static function getByProject( int $id ): Collection {
-			return ProjectPlatformConnection::where('project_id', '=', $id)->get('platform_id')->map(fn($id) => Platform::getById($id));
+			return ProjectPlatformConnection::where('project_id', '=', $id)->get('platform_id')->map(fn($id) => Platform::get( $id));
 	    }
 
 	    public function projects(): HasMany {

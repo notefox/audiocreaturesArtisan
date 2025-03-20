@@ -34,6 +34,10 @@
     }
 }
 
+.grid-minmax {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 @layer components {
     /* general components */
     .content-container {
@@ -84,15 +88,15 @@
     }
 
     .dashboard-inner-container {
-        @apply h-full grid grid-cols-dashboard
+        @apply h-full grid grid-cols-dashboard relative
     }
 
     .dashboard-heading {
-        @apply px-5 py-3 border-b-2 border-black text-3xl text-left font-serif
+        @apply px-5 pb-3 mb-3 border-b-2 border-black text-3xl text-left font-serif
     }
 
     .dashboard-sidebar-container {
-        @apply h-full min-w-56 flex flex-col border-r-2 border-black font-sans text-xl
+        @apply min-w-56 flex flex-col border-r-2 border-black font-sans text-xl sticky top-0
     }
 
     .dashboard-sidebar-link {
@@ -101,6 +105,5 @@
 
     .dashboard-content-container {
         @apply mt-4
-
     }
 }

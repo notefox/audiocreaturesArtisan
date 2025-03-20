@@ -11,7 +11,7 @@
         use HasFactory;
 
 	    public static function getByProject( int $id ): Collection {
-			return ProjectLinkReferenceConnection::where('project_id', '=', $id)->get(['reference_link_id'])->map(fn($id) => ReferenceLink::getById($id));
+			return ProjectLinkReferenceConnection::where('project_id', '=', $id)->get(['reference_link_id'])->map(fn($id) => ReferenceLink::get( $id));
 	    }
 
 

@@ -19,7 +19,11 @@
         use HasFactory;
 
         protected $table = 'images';
-        protected $fillable = [ 'image_path', 'image_name', 'sha256', 'mime_type' ];
+        protected $fillable = [ 'image_path', 'image_name', 'sha256', 'mime_type', 'parent' ];
+
+        public static function find( int $id ) {
+            return Images::all()->firstWhere('id', '=', $id);
+        }
 
         public function alt($size = 'thumbnail'): Images {
             if(!in_array($size,array_keys(ImageRepository::$alt_sizes))) {
@@ -29,6 +33,14 @@
             return Images::all()
                          ->where('parent', '=', $this->id)
                          ->firstWhere('image_name', '=', "$this->image_name-$size");
+        }
+
+        public function children($id) {
+            return Images::all()->where( 'parent', '=', $id);
+        }
+
+        public function isOriginal(): bool {
+            return $this->original()->id == $this->id;
         }
 
         public function original() {

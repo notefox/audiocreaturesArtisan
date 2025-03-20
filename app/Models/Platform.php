@@ -12,7 +12,8 @@
 
         public $timestamps = false;
 
-        public function getById( $id ): Platform {
+
+        public static function get( $id ): Platform {
             return Platform::firstWhere('id', '=', $id);
         }
 

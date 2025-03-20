@@ -2,6 +2,7 @@
 
     namespace App\Models;
 
+    use Illuminate\Database\Eloquent\Collection;
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
     use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,7 +14,7 @@
 
         public $timestamps = false;
 
-        public function getById( $id ): ProjectType {
+        public static function get( $id ): ProjectType {
             return ProjectType::firstWhere('id', '=', $id);
         }
 

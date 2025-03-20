@@ -18,7 +18,7 @@
 </body>
 <footer>
     <!-- Scripts -->
-    @vite('resources/js/dashboard.js')
+    @vite(['resources/js/dashboard.js'])
     @livewireScripts
     @livewire('wire-elements-modal')
 </footer>
