@@ -2,6 +2,6 @@
     <x-page.navigation />
 
     <h1 class="section-heading-text" data-nav-overlap="0" data-aos="fade-up">
-        Index page
+        About page
     </h1>
 </x-app-layout>
