@@ -30,8 +30,8 @@
                 'platform' => Platform::all(),
                 'project_type' => ProjectType::all(),
 
-                'images' => Images::all(),
-//                'images' => ImageController::getAllParents(),
+//                'images' => Images::all(),
+                'images' => ImageController::getAllParents(),
             ];
 
             $map_datatype_to_key = function ($datatype) use (&$datatypes) {

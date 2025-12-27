@@ -5,6 +5,8 @@
         Index Page
     </div>
 
-    <div class="text-white">
-    </div>
+    @foreach($images as $image)
+        <img src="{{ asset('storage/' . $image) }}" alt="image">
+    @endforeach
+
 </x-app-layout>

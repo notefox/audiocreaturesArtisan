@@ -1,51 +1,9 @@
-import {getNextOuterClass, isEmpty, sleep} from "../utils.js";
-
 const dashboardSelectionHandler = () => {
-    class Navigationer {
-
-        currentTab = ''
-        previousTab = ''
-
-        tabElements
-
-        constructor(tabElements, initialTab) {
-            this.tabElements = tabElements
-
-            this.currentTab = initialTab
-            this.previousTab = initialTab
-
-            this.hideAllTabs()
-            this.showTab(initialTab)
-        }
-
-        changeToTab(tab) {
-            this.showTab(tab)
-
-            this.previousTab = this.currentTab
-            this.currentTab = tab
-        }
-
-        showTab(tabName) {
-            Array.from(dashboardTabElements)
-                .filter((element) => !element.classList.contains('hidden'))
-                .forEach(element => element.classList.add('hidden'))
-
-            Array.from(dashboardTabElements)
-                .filter(element => element.id === tabName)
-                .forEach(element => element.classList.remove('hidden'))
-
-        }
-
-        hideAllTabs() {
-            Array.from(this.tabElements).forEach((tab) => {
-                tab.classList.add('hidden')
-            })
-        }
-    }
-
     const dashboardContainer = document.getElementById('dashboard')
 
-    if (!dashboardContainer) {
+    if ( ! dashboardContainer ) {
+        console.log("dashboard container not found")
+
         return;
     }
 
@@ -53,21 +11,30 @@ const dashboardSelectionHandler = () => {
 
     const dashboardTabElements = dashboardContent.getElementsByClassName('datalistEntry')
 
-    const Navigator = new Navigationer(dashboardTabElements, 'images')
+    Array.from(dashboardTabElements).forEach((tab) => {
+        tab.classList.add('hidden')
+    })
 
-    const dashboardSidebarLinks = document.getElementsByClassName('dashboard-sidebar-link')
+    /**
+     * @param tabId {string}
+     */
+    function showTab(tabId) {
+        Array.from(dashboardTabElements)
+            .filter((element) => !element.classList.contains('hidden'))
+            .forEach(element => element.classList.add('hidden'))
 
-    for (const dashboardSidebarLink of dashboardSidebarLinks) {
-        dashboardSidebarLink.addEventListener('click', (event) => {
-            event.preventDefault()
-
-            const target = event.target
-            const correctTarget = getNextOuterClass(target, 'dashboard-sidebar-link')
-
-            Navigator.changeToTab(correctTarget.dataset.tab)
-        })
+        Array.from(dashboardTabElements)
+            .filter(element => element.id === tabId)
+            .forEach(element => element.classList.remove('hidden'))
     }
 
+    const currentTab = window.location.hash.replace('#', '');
+
+    showTab(currentTab ?? 'projects')
+
+    addEventListener("hashchange", (event) => {
+        showTab(window.location.hash.replace('#', ''))
+    });
 }
 
 addEventListener('DOMContentLoaded', dashboardSelectionHandler)

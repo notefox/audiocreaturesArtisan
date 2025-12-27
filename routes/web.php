@@ -11,10 +11,11 @@
     use App\Models\Publisher;
     use Illuminate\Support\Facades\Route;
 
+
     Route::get('/', function() {
         $publishers = Publisher::all();
 
-        $images = $publishers->map(fn($publisher) => $publisher->get_logo());
+        $images = $publishers->map(fn($publisher) => $publisher->get_logo()?->getAttribute('image_path'));
 
         $data = [
             'images' => $images,
@@ -37,6 +38,15 @@
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::delete('/publisher/{id}', [PublisherController::class, 'destroy'])->name('publisher.destroy');
+        Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
+        Route::delete('/reference_link/{id}', [ReferenceLinkController::class, 'destroy'])->name('reference-link.destroy');
+        Route::delete('/genre/{id}', [GenreController::class, 'destroy'])->name('genre.destroy');
+        Route::delete('/platform/{id}', [PlatformController::class, 'destroy'])->name('platform.destroy');
+        Route::delete('/project_type/{id}', [ProjectTypeController::class, 'destroy'])->name('project-type.destroy');
     });
 
     require __DIR__ . '/api.php';
