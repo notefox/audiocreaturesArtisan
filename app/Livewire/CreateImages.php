@@ -7,7 +7,7 @@
     use Livewire\WithFileUploads;
     use LivewireUI\Modal\ModalComponent;
 
-	class CreateImages extends ModalComponent {
+ class CreateImages extends ModalComponent {
 
         use WithFileUploads;
 
@@ -18,7 +18,11 @@
         }
 
         public function save() {
-            $this->form->store();
+            if ($this->form->image && $this->form->image->id) {
+                $this->form->update();
+            } else {
+                $this->form->store();
+            }
 
             $this->redirect('dashboard');
             return null;

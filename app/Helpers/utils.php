@@ -17,18 +17,20 @@
         }
     }
 
-    /**
-     * this function is similar to array_search, but with the option to use a self-defined function
-     *
-     * @param array $array input array
-     * @param string|Closure $callback the callback, the input array will get filtered by
-     */
-    function array_find(array $array, string|Closure $callback) {
-        $foundData = array_filter($array, $callback);
+    if (!function_exists('array_find')) {
+        /**
+         * this function is similar to array_search, but with the option to use a self-defined function
+         *
+         * @param array $array input array
+         * @param string|Closure $callback the callback, the input array will get filtered by
+         */
+        function array_find(array $array, string|Closure $callback) {
+            $foundData = array_filter($array, $callback);
 
-        return !empty($foundData)
-            ? $foundData[array_key_first($foundData)]
-            : null;
+            return !empty($foundData)
+                ? $foundData[array_key_first($foundData)]
+                : null;
+        }
     }
 
     /**
